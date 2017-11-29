@@ -10,7 +10,7 @@ class nginx::params{
   $config_log_dir = '/var/log/nginx'
   $config_pid_file = '/run/nginx.pid'
 
-  $config_vdir_enable = $fats['os']['family'] ? {
+  $config_vdir_enable = $facts['os']['family'] ? {
     'Debian' => $config_dir,
      default => 'undef',
  }
