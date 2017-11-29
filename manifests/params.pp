@@ -17,11 +17,11 @@ class nginx::params{
 
   $config_process_user = $facts['os']['family'] ? {
     'Debian' => 'www-data',
-    'default'=> 'nginx',
+     default => 'nginx',
  }
   $vhost_dir = $facts['os']['family'] ? {
     'Debian' => "${config_dir}/sites-enabled",
-    'default'=> 'nginx',
+     default => 'nginx',
  }
   $service_name = 'nginx'
   $service_ensure = 'running'
