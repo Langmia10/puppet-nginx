@@ -11,12 +11,24 @@ class nginx::config(
   String $process_user          = $::nginx::config_process_user,
   String $docroot               = $::nginx::docroot,
 ){
- file { 'nginx_conf':
-   ensure => $ensure, 
-   path   => "${config_dir}/nginx.conf",
-   mode   => $mode,
-   owner  => $owner,
-   group  => $group,
+  file { 'nginx_conf':
+   ensure  => $ensure, 
+   path    => "${config_dir}/nginx.conf",
+   mode    => $mode,
+   owner   => $owner,
+   group   => $group,
    content => template("${module_name}/conf.d/nginx.conf.erb"), 
+  }
+  
+  file { $log_dir:
+    ensure  => directory,
+    recures => true,
+  }
+   file { $docroot: 
+     ensure  => directory,
+     recures => true,
+     mode    => $mode,
+     owner   => $owner,
+     group   => $group,
   }
 }
