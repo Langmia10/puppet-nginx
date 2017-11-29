@@ -12,7 +12,7 @@ define nginx::vhost(
 ){
   $vhost_docroot = "${::nginx::docroot}/${name}"
 
-  file { "/etc/nginx/conf.d/${vhost_dir}/${priority}/${name}.conf": 
+  file { "/etc/nginx/conf.d/${vhost_dir}/${priority}-${name}.conf": 
    ensure  => file,
    content => template("${module_name}/vhost/vhost.conf.erb"),
    mode    => $mode,
